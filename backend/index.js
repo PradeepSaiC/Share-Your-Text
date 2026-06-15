@@ -3,7 +3,7 @@ const cors = require("cors");
 const path = require("path");
 
 const app = express();
-const PORT = process.env.PORT || 3000;
+const PORT = Number(process.env.PORT || process.env.RENDER_PORT || 3000);
 
 app.use(express.json());
 app.use(cors());
@@ -60,12 +60,20 @@ app.get("/create-room", (req, res) => {
   });
 });
 
+app.get("/health", (req, res) => {
+  res.status(200).json({ status: "ok" });
+});
+
 app.use(express.static(path.join(__dirname, "..", "frontend", "dist")));
 
 app.get(/.*/, (req, res) => {
   res.sendFile(path.join(__dirname, "..", "frontend", "dist", "index.html"));
 });
 
-app.listen(PORT, "0.0.0.0", () => {
+const server = app.listen(PORT, "0.0.0.0", () => {
   console.log(`Listening on port ${PORT}`);
+});
+
+process.on("SIGTERM", () => {
+  server.close(() => process.exit(0));
 });
