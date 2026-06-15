@@ -1,0 +1,24 @@
+{
+  "name": "sharemytext",
+  "version": "1.0.0",
+  "description": "Real-time text sharing app",
+  "private": true,
+  "main": "backend/index.js",
+  "workspaces": [
+    "backend",
+    "frontend"
+  ],
+  "scripts": {
+    "build": "concurrently \"cd frontend && npm run build\" \"cd backend && npm run build\""
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "engines": {
+    "node": ">=18"
+  },
+  "dependencies": {
+    "concurrently": "^10.0.3"
+  }
+}
