@@ -1,13 +1,15 @@
 {
-  "name": "sharemytext",
+  "name": "sharemytext-frontend",
   "private": true,
-  "version": "0.0.0",
+  "version": "1.0.0",
   "type": "module",
   "scripts": {
     "dev": "vite",
-    "build": "npm install && vite build",
-    "lint": "eslint .",
+    "build": "vite build",
     "preview": "vite preview"
+  },
+  "engines": {
+    "node": ">=18"
   },
   "dependencies": {
     "react": "^19.2.6",
